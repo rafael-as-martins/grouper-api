@@ -1,31 +1,30 @@
 # Grouper
 
 # Deploy
- Executar o script build.sh presente na diretoria grouper-admin, com isto a aplicação deverá ficar disponível para ser consumida.
+ Execute build.sh script on the grouper-api directory, after the execution you should have an up and running REST API available on port 8080
 
 # Docker
 
-Para arrancar com os containers de administração, precisamos de nos localizar na raiz do projeto grouper-admin. Para arrancar com o projeto executar os seguintes comandos:
+Some docker commands thats can be use externaly to the build.sh script
 
- docker-compose up — Irá executar os comandos presentes no Dockerfile e irá correr os serviços definid no ficheiro docker-compose.yml.\
- docker-compose down — Irá parar e remover todos os containers especificados no docker-compose.yml.\
- docker-compose up --build — Se qualquer alteração for realizada ao nível do ficheiro Dockerfile, ficheiro jar ou docker-compose.yml, então este comando deverá ser executado de forma atualiazr a informação presente no ambiente docker.
+ docker-compose up — It will look into docker-compose.yml file and start up each specified service, the service setup commands and on their correspondent DockerFile files.\
+ docker-compose down — It will stop and remove all containers (Including volumes)\
+ docker-compose up --build — Any update done on the application or configuration level, this command should be executed in order to apply them.
 
-
-Nota: após a realização dos comandos up, deverão estar em cima os respetivos container: 
+Note: After startup, you should the following containers up and running:
 
   - grouper-db  
-  - grouper-admin-app
+  - grouper-api-app
   
-  Para entrar dentro do respetivo container para realização de alguma tarefa executar o seguinte comando:
+  In order to get into the container execute the follwoing command:
     
      - docker exec -ti <container-name> bash
   
 
-Dentro do container postgres, os seguintes comandos poderão ser executados:
+The database is in postgres, here you will find the commands to get into the database:
 
- psql grouper postgres -> Entrar na BD postgres  
- \dt -> Depois de entrarmos no linha de comandos postgres, este comando permite listar todas as tabelas existentes na BD 
+ psql grouper postgres -> Get Into de DB
+ \dt -> Show schema tables
 
  
 # API Endpoints (72)
