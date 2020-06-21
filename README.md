@@ -1,5 +1,8 @@
 # Grouper REST API
 
+# REST PATTERN
+ This API was made based on HATEOAS REST Pattern.
+
 # Deploy
  Execute build.sh script on the grouper-api directory, after the execution you should have an up and running REST API available on port 8080
 
