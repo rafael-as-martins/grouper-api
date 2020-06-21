@@ -1,0 +1,52 @@
+package com.fcul.grouper.config;
+
+import java.io.IOException;
+
+import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JsonParseException;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fcul.grouper.GrouperApplication;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = GrouperApplication.class)
+@WebAppConfiguration
+@EnableWebMvc
+@TestPropertySource(properties = { "spring.config.location=classpath:application-unit-test.yml" })
+public class TestEnvironment {
+
+	@Autowired
+	protected WebApplicationContext webApplicationContext;
+
+	protected MockMvc mvc;
+
+	@Before
+	public void setup() {
+		mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+
+	protected String mapToJson(Object obj) throws JsonProcessingException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		return objectMapper.writeValueAsString(obj);
+	}
+
+	protected <T> T mapFromJson(String json, Class<T> clazz)
+			throws JsonParseException, JsonMappingException, IOException {
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		return objectMapper.readValue(json, clazz);
+	}
+
+}

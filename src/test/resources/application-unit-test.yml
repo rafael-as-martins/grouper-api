@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    usernam: sa
+    password: sa
+  jpa:
+    hibernate:
+      hbm2ddl: create
+jwt:
+  secret: secret
+  expirationInMs: 3000000
+
+grouper:
+  storage:
+    location: /tmp/Grouper/media/
+    db: ${GROUPER_STORE_FILES_IN_BD:true}

@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${GROUPER_POSTGRES_SERVICE:jdbc:postgresql://grouper-db22:5432/grouper2}
+    username: ${GROUPER_POSTGRES_USERNAME:postgres2}
+    password: ${GROUPER_POSTGRES_PASSWORD:password2}
+    
+jwt:
+   secret: secret
+   expirationInMs: 3000000
+   
+grouper:
+  storage:
+    location: /tmp/Grouper/media/
+    db: ${GROUPER_STORE_FILES_IN_BD:true}
