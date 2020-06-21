@@ -1,4 +1,4 @@
-# Grouper
+# Grouper REST API
 
 # Deploy
  Execute build.sh script on the grouper-api directory, after the execution you should have an up and running REST API available on port 8080
